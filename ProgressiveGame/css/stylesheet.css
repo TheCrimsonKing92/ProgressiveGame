@@ -1,0 +1,479 @@
+﻿html
+{
+    box-sizing: border-box;
+}
+
+html, body
+{
+    font-family: 'Lato';
+}
+
+*, *:before, *:after
+{
+    box-sizing: inherit;
+}
+
+.no-select
+{
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#modalText
+{
+    display: none;
+    min-height: 10px;
+    height: auto;
+    width: 60%;
+    position: absolute;
+    background-color: black;
+    color: white;
+    font-size: 1.3em;
+}
+
+.reset-margin-top
+{
+    margin-top: 0;
+}
+
+.reset-margin
+{
+    margin: 0;
+}
+
+.no-show
+{
+    display: none;
+}
+
+.game, .mainMenu
+{
+    width: 100%;
+}
+
+.mainMenu
+{
+    display: flex;
+}
+
+.navItem 
+{
+    flex: 1 1 auto;
+    color: white;
+}
+
+.navItem > h5
+{
+    display: inline-block;
+}
+
+.navItem > h5 > a
+{
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.navItem > h5 > a:hover
+{
+    color: gray;
+    text-decoration: none;
+}
+
+.profile
+{
+    margin-right: 1%;
+    flex: 0 1 auto;
+    height: 100%;
+}
+
+.mainMenu
+{
+    background-color: black;
+    height: 5%;
+    position: fixed;
+    top: 0;
+}
+
+.game
+{
+    margin-top: 2%;
+    padding-top: 6%;
+}
+
+@media (orientation:landscape) and (max-device-width: 500px)
+{
+    .mainMenu
+    {
+        height: 8.25%;
+    }
+
+    .game
+    {
+        margin-top: 1%;
+        padding-top: 4%;
+    }
+}
+
+@media (min-aspect-ratio: 16/9) and (min-device-width: 1000px)
+{
+    .mainMenu
+    {
+        height: 4%;
+    }
+    .game
+    {
+        margin-top: 0;
+        padding-top: 2.25%;
+    }
+}
+
+.classPicker
+{
+    width: 30%;
+    max-width: 70%;
+    margin-top: 7%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+}
+
+.classPicker > h4
+{
+    width: 100%;
+    display: block;
+}
+
+.classes
+{
+    width: 100%;
+    display: flex;
+}
+
+.classHolder
+{
+    display: flex;
+    max-width: 100%;
+    display: block;
+    padding: .1%;
+    margin: 1%;
+}
+
+.classHolder > div, .classHolder > p
+{
+    vertical-align: middle;
+}
+
+.classHolder > p
+{
+    display: inline-block;
+}
+
+.flexie
+{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.flexie-wrap
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flexie-child
+{
+    flex: 1 1 23%;
+}
+
+.main-flexie-child
+{
+    flex: 2 1 40%;
+}
+
+.clicking, .stats, .store, .options
+{
+    padding: .1%;
+}
+
+.mainStats
+{
+    margin-bottom: .5%;
+}
+
+.stat, .helperDisplay, .clicking, .stats, .store, .options
+{
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+}
+
+.stat
+{
+    flex: 1 1 auto;
+    margin-bottom: 0;
+}
+
+.helperDisplay
+{
+    padding: .3%;
+}
+
+.helperInfoBox, .helperInfoBox > p
+{
+    display: inline-block;
+}
+
+.helperInfoBox > p
+{
+    margin-bottom: 0;
+    margin-right: 6px;
+    float: left;
+}
+
+.sell
+{
+    color: black;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    width: 30px;
+    text-align: center;
+    float: left;
+}
+
+.menuButton
+{
+    color: black;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    max-width: 130px;
+    text-align: center;
+    float: left;
+    padding: .1%;
+    margin: .5%;
+}
+
+.helpers, .upgrades, .towers, .specials
+{
+    padding: .2%;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+}
+
+.dasButton
+{
+    background-color: green;
+    border-radius: 5em;
+    min-height: 5px;
+    height: 120px;
+    max-height: 100%;
+    min-width: 5px;
+    width: 120px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.storeHeader
+{
+    font-weight: 600;
+    font-size: .9em;
+}
+
+.purchaseHolder
+{
+    display: inline-block;
+}
+
+.storeIcon
+{
+    margin-right: 1px;
+    display: inline-block;
+    background-size: cover;
+    min-width: 15px;
+    width: 45px;
+    min-height: 15px;
+    height: 45px;
+}
+
+.store-tooltip
+{
+    margin: 0;
+    padding: 3px;
+    display:none;
+    background-color: black;
+    max-height: 45px;
+    text-align: left;
+    background-color: black;
+    color: white;
+    position: absolute;
+    z-index: 5;
+}
+
+.store-tooltip-text
+{
+    margin: 0;
+    color: white;
+    border: 1px solid #A47B4B;
+}
+
+.statsIcon
+{
+    display: inline-block;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+}
+
+.Builder
+{
+    background-image: url('../img/Builder.png');
+}
+
+.Master
+{
+    background-image: url('../img/Master.png');
+}
+
+.Mechanic
+{
+    background-image: url('../img/Mechanic.png');
+}
+
+.Thief
+{
+    background-image: url('../img/Thief.png');
+}
+
+.Airplane
+{
+    background-image: url('../img/AirplaneBig.png');
+}
+
+.AutoClicker
+{
+    background-image: url('../img/AutoClickerBig.png');
+}
+
+.Cloner
+{
+    background-image: url('../img/ClonerBig.png');
+}
+
+.Consumer
+{
+    background-image: url('../img/ConsumerBig.png');
+}
+
+.Djinn
+{
+    background-image: url('../img/DjinnBig.png');
+}
+
+.Hammer
+{
+    background-image: url('../img/HammerBig.png');
+}
+
+.Robot
+{
+    background-image: url('../img/RobotBig.png');
+}
+
+.AudibleMotivation
+{
+    background-image: url('../img/AudibleMotivation.png');
+    background-color: red;
+}
+
+.BuddySystem
+{
+    background-image: url('../img/BuddySystem.png');
+}
+
+.ClonerOverdrive
+{
+    background-image: url('../img/ClonerOverdrive.png');
+}
+
+.ClickEfficiency
+{
+    background-image: url('../img/ClickEfficiency.png');
+}
+
+.CyberneticSynergy
+{
+    background-image: url('../img/CyberneticSynergy.png');
+}
+
+.EfficientOperations
+{
+    background-image: url('../img/EfficientOperations.png');
+}
+
+.ExtendedCargo
+{
+    background-image: url('../img/ExtendedCargo.png');
+}
+
+.GatheringPower
+{
+    background-image: url('../img/GatheringPower.png');
+}
+
+.HeavierHammers
+{
+    background-image: url('../img/HeavierHammers.png');
+    background-color: blue;
+}
+
+.HelpingHand, .HelpingHandsier, .HelpingHandsiest
+{
+    background-image: url('../img/HelpingHand.png');
+}
+
+.BlueBlock
+{
+    background-image: url('../img/BlueBlockPurchase.png');
+}
+
+.Cleanse
+{
+    background-image: url('../img/Cleanse.png');
+    background-color: purple;
+}
+
+.Score
+{
+    background-image: url('../img/ScorePurchase.png')
+}
+
+.Tamer
+{
+    background-image: url('../img/Tamer.png');
+}
+
+.GreenBlock
+{
+    background-image: url('../img/GreenBlockPurchase.png');
+    background-color: green;
+}
+
+.Cost
+{
+    background-image: url('../img/CostTower.png');
+}
+
+.Mouse
+{
+    background-image: url('../img/MouseTower.png');
+}
+
+.Power
+{
+    background-image: url('../img/PowerTower.png');
+}

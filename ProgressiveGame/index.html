@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <title>Progressive Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css' />
+    <link href='https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/stylesheet.css" />
+</head>
+<body ng-controller="GameController as Game">
+    <nav class="mainMenu text-center">
+        <img class="profile" src="./img/ZappaProfile.png" />
+        <div class="navItem"><h5><a href="https://thecrimsonking.net">Home</a></h5></div>
+        <div class="navItem"><h5><a href="https://thecrimsonking.net/about.html">About</a></h5></div>
+        <div class="navItem"><h5><a href="httpss://www.patreon.com/TheDecentTech">Patreon</a></h5></div>
+    </nav>
+    <div class="container-fluid no-select game flexie" ng-if="Game.Store.storage.Class !== ''">
+        <section class="clicking flexie-child">
+            <h5 class="text-center">Click here to earn score</h5>
+            <div class="dasButton" ng-click="Game.ButtonClick()"></div>
+        </section>
+        <section class="stats main-flexie-child">
+            <div class="flexie-wrap text-center mainStats">
+                <p class="stat">{{ Game.Store.storage.clicks | number}} Clicks</p>
+                <p class="stat">{{ Game.Store.storage.score | floor | number}} Score</p>
+                <p class="stat">{{ Game.Store.clickValue() | number}} Score/click</p>
+                <p class="stat">{{ Game.EarnVal() * 2 | number}} Score/s</p>
+                <p class="stat" ng-if="Game.Store.storage.Upgrades['Cybernetic Synergy'].purchased > 0">{{ Game.Store.getCyberneticBonus() | number}}/s Cybernetic Bonus</p>
+            </div>
+            <section class="helperDisplay" ng-if="Game.Store.storage.Helpers['AutoClicker'].purchased > 0">
+                <div class="AutoClicker statsIcon"></div>
+                <div class="helperInfoBox">
+                    <p>{{ Game.Store.storage.Helpers['AutoClicker'].output() | number}} score per second from {{ Game.Store.storage.Helpers['AutoClicker'].purchased | number}} AutoClicker<ng-pluralize count="Game.Store.storage.Helpers['AutoClicker'].purchased" when="{'0': '', '1': '', 'other': 's'}"></ng-pluralize></p>
+                    <div class="sell" ng-click="Game.Store.sell('AutoClicker')" ng-if="Game.Store.storage.Helpers['AutoClicker'].purchased > 0">Sell</div>
+                </div>
+            </section>
+            <section class="helperDisplay" ng-if="Game.Store.storage.Helpers['Hammer'].purchased > 0">
+                <div class="Hammer statsIcon"></div>
+                <div class="helperInfoBox">
+                    <p>{{ Game.Store.storage.Helpers['Hammer'].output() | number}} score per second from {{ Game.Store.storage.Helpers['Hammer'].purchased | number}} Hammer<ng-pluralize count="Game.Store.storage.Helpers['Hammer'].purchased" when="{'0': '', '1': '', 'other': 's'}"></ng-pluralize></p>
+                    <div class="sell" ng-click="Game.Store.sell('Hammer')" ng-if="Game.Store.storage.Helpers['Hammer'].purchased > 0">Sell</div>
+                </div>
+            </section>
+            <section class="helperDisplay" ng-if="Game.Store.storage.Helpers['Robot'].purchased > 0">
+                <div class="Robot statsIcon"></div>
+                <div class="helperInfoBox">
+                    <p>{{ Game.Store.storage.Helpers['Robot'].output() | number}} score per second from {{ Game.Store.storage.Helpers['Robot'].purchased | number}} Robot<ng-pluralize count="Game.Store.storage.Helpers['Robot'].purchased" when="{'0': '', '1': '', 'other': 's'}"></ng-pluralize></p>
+                    <div class="sell" ng-click="Game.Store.sell('Robot')" ng-if="Game.Store.storage.Helpers['Robot'].purchased > 0">Sell</div>
+                </div>
+            </section>
+            <section class="helperDisplay" ng-if="Game.Store.storage.Helpers['Airplane'].purchased > 0">
+                <div class="Airplane statsIcon"></div>
+                <div class="helperInfoBox">
+                    <p>{{ Game.Store.storage.Helpers['Airplane'].output() | number}} score per second from {{ Game.Store.storage.Helpers['Airplane'].purchased | number}} Airplane<ng-pluralize count="Game.Store.storage.Helpers['Airplane'].purchased" when="{'0': '', '1': '', 'other': 's'}"></ng-pluralize></p>
+                    <div class="sell" ng-click="Game.Store.sell('Airplane')" ng-if="Game.Store.storage.Helpers['Airplane'].purchased > 0">Sell</div>
+                </div>
+            </section>
+            <section class="helperDisplay" ng-if="Game.Store.storage.Helpers['Cloner'].purchased > 0">
+                <div class="Cloner statsIcon"></div>
+                <div class="helperInfoBox">
+                    <p>{{ Game.Store.storage.Helpers['Cloner'].output() | number}} score per second from {{ Game.Store.storage.Helpers['Cloner'].purchased | number}} Cloner<ng-pluralize count="Game.Store.storage.Helpers['Cloner'].purchased" when="{'0': '', '1': '', 'other': 's'}"></ng-pluralize></p>
+                    <div class="sell" ng-click="Game.Store.sell('Cloner')" ng-if="Game.Store.storage.Helpers['Cloner'].purchased > 0">Sell</div>
+                    <p ng-if="Game.Store.storage.Upgrades['Efficient Operations'].purchased > 0">Efficient Operations Bonus: {{ Game.Store.storage.operationsBonus | number}} per Cloner</p>
+                </div>
+            </section>
+            <section class="helperDisplay" ng-if="Game.Store.storage.Helpers['Djinn'].purchased > 0">
+                <div class="Djinn statsIcon"></div>
+                <div class="helperInfoBox">
+                    <p>{{ Game.Store.storage.Helpers['Djinn'].output() | number}} score per second from {{ Game.Store.storage.Helpers['Djinn'].purchased | number}} Djinn</p>
+                    <div class="sell" ng-click="Game.Store.sell('Djinn')" ng-if="Game.Store.storage.Helpers['Djinn'].purchased > 0">Sell</div>
+                </div>
+            </section>
+            <section class="helperDisplay" ng-if="Game.Store.storage.Helpers['Consumer'].purchased > 0">
+                <div class="Consumer statsIcon"></div>
+                <div class="helperInfoBox">
+                    <p>{{ Game.Store.storage.Helpers['Consumer'].output() | number}} score per second from {{ Game.Store.storage.Helpers['Consumer'].purchased | number}} Consumer<ng-pluralize count="Game.Store.storage.Helpers['Consumer'].purchased" when="{'0': '', '1': '', 'other': 's'}"></ng-pluralize></p>
+                    <div class="sell" ng-click="Game.Store.sell('Consumer')" ng-if="Game.Store.storage.Helpers['Consumer'].purchased > 0">Sell</div>
+                    <div class="statsIcon BlueBlock"></div>
+                    <p>{{ Game.Store.storage.blueBlocks | number }} blue block<ng-pluralize count="Game.Store.storage.blueBlocks" when="{'0': 's', '1': '', 'other': 's'}"></ng-pluralize></p>
+                    <div class="statsIcon GreenBlock"></div>
+                    <p>{{ Game.Store.storage.greenBlocks | number }} green block<ng-pluralize count="Game.Store.storage.greenBlocks" when="{'0': 's', '1': '', 'other': 's'}"></ng-pluralize></p>
+                </div>
+            </section>
+        </section>
+        <section class="store flexie-child">
+            <section class="helpers">
+                <h6 class="reset-margin-top storeHeader">Helpers</h6>
+                <div class="purchaseHolder" ng-repeat="helper in Game.Store.storage.Helpers">
+                    <div ng-class="helper.name" class="storeIcon" ng-click="Game.Store.buy(helper)" ng-mouseenter="Game.Tooltip($event, true)" ng-mouseleave="Game.Tooltip($event, false)"></div>
+                    <div class="store-tooltip"><p class="tooltip-text">{{ helper.name }}, costs {{ helper.price().price | number}} score. <br /> {{ helper.description }}</p></div>
+
+                </div>
+            </section>
+            <section class="upgrades">
+                <h6 class="reset-margin-top storeHeader">Upgrades</h6>
+                <div class="purchaseHolder" ng-repeat="upgrade in Game.Store.storage.Upgrades" ng-if="upgrade.unlocked && upgrade.purchased < 1">
+                    <div ng-class="upgrade.name.replace(' ', '')" class="storeIcon" ng-click="Game.Store.buy(upgrade)" ng-mouseenter="Game.Tooltip($event, true)" ng-mouseleave="Game.Tooltip($event, false)"></div>
+                    <div class="store-tooltip"><p class="tooltip-text">{{ upgrade.name }}, costs {{ upgrade.price().price | number}} score. <br /> {{ upgrade.description }}</p></div>
+                </div>
+            </section>
+            <section class="towers">
+                <h6 class="reset-margin-top storeHeader">Towers</h6>
+                <div class="purchaseHolder" ng-repeat="tower in Game.Store.storage.Towers" ng-if="Game.Store.storage.Helpers['Consumer'].isPurchased() && tower.purchased < 1">
+                    <div ng-class="tower.name" class="storeIcon" ng-click="Game.Store.buy(tower)" ng-mouseenter="Game.Tooltip($event, true)" ng-mouseleave="Game.Tooltip($event, false)"></div>
+                    <div class="store-tooltip"><p class="tooltip-text">{{ tower.name }} Tower, costs {{ tower.price().price | number }} blue blocks. <br /> {{ tower.description }}</p></div>
+                </div>
+            </section>
+            <section class="specials">
+                <h6 class="reset-margin-top storeHeader">Specials</h6>
+                <div class="purchaseHolder" ng-repeat="special in Game.Store.storage.Specials" ng-if="Game.Store.storage.Helpers['Consumer'].isPurchased() ">
+                    <div ng-class="special.name.replace(' ', '')" class="storeIcon" ng-click="Game.Store.buy(special)" ng-mouseenter="Game.Tooltip($event, true)" ng-mouseleave="Game.Tooltip($event, false)"></div>
+                    <div class="store-tooltip"><p class="tooltip-text">{{ special.name }}, costs {{ special.price().price | number}} green blocks. <br /> {{ special.description }}</p></div>
+                </div>
+            </section>
+        </section>
+        <section class="options flexie-child">
+            <h6 class="reset-margin-top storeHeader">Options</h6>
+            <!--<div class="menuButton" ng-click="Game.AutosaveFlip()">Autosave: Every {{ Game.Autosave }} seconds</div>-->
+            <div class="menuButton" ng-click="Game.reset()">Reset Game</div>
+            <div class="menuButton" ng-click="Game.slimSave()">Save Game</div>
+        </section>
+        <div id="messageModal"><p id="modalText"></p></div>
+    </div>
+    <section class="classPicker no-select" ng-if="Game.Store.storage.Class === ''">
+        <h4 class="text-center">Choose your class</h4>
+        <div class="classHolder" ng-repeat="class in Game.Store.storage.Classes">
+            <div ng-class="class.name" class="storeIcon" ng-click="Game.SetClass(class.name)"></div>
+            <p><strong>{{ class.name }}:</strong> {{ class.description }}</p>
+        </div>
+    </section>
+    <script src="javascript/App/polyfills.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script>window.angular || document.write('<script src="javascript/libs/angular-1.4.3/angular.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-touch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap.min.js"></script>
+    <script src="javascript/App/app.js"></script>
+    <script src="javascript/Filters/floorFilter.js"></script>
+    <script src="javascript/Store/storeService.factory.js"></script>
+    <script src="javascript/App/game.controller.js"></script>
+</body>
+</html>
